@@ -1,0 +1,128 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<section class="site-section" id="work-section">
+   <div class="container">
+     <div class="row mt-5 justify-content-center">
+       <div class="col-md-8 text-center">
+         <div class="col-md-12">
+            <div class="titlepage text_align_center">
+               <h2>Add <span class="blue_light">New</span></h2>
+            </div>
+         </div> <hr>
+         <p class="text-muted">{% now 'jS F Y' %}</p>
+         <form action="" class="main_form" method="POST">
+            {% if messages %}
+               {% for message in messages %}
+               <p {% if message.tags %} class=" alert alert-{{message.tags}}"{% endif %}>{{ message}}</p>{% endfor %}
+               {% endif %}
+            {% csrf_token %}
+             <div class="row form-group">
+                <div class="col-md-12 ">
+                   <input class="form-control" placeholder="Name" type="type" name="Name"> 
+                </div>
+               </div>
+               
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Phone number1" type="type" name="Phone1">                          
+                  </div>
+               </div>
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Phone number2" type="type" name="Phone2">                          
+                 </div>
+               </div>
+                 
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Email" type="type" name="Email">                          
+                  </div>
+               </div>
+
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Picture" type="type" name="images">                          
+                 </div>
+               </div>
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Address" type="type" name="address">                          
+                 </div>
+               </div>
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <input class="form-control" placeholder="Business Key" type="type" name="issue">                          
+                 </div>
+               </div>
+               <div class="row form-group">
+                  <div class="col-md-12">
+                     <textarea class="form-control" placeholder="Message" name="message"></textarea>
+                  </div>
+               </div> 
+                  <div class="col-md-12">
+                  <button class="btn btn-primary btn-sm btn-block" type="submit">Submit</button>
+                </div>
+          </form>
+       </div>
+     </div>
+   </div>
+   
+ </section>
+
+
+<!-- contact 
+<div class="contact">
+    <div class="container">
+       <div class="row ">
+          <div class="col-md-12">
+             <div class="titlepage text_align_center">
+                <h2>Add <span class="blue_light">New</span></h2>
+             </div>
+          </div>
+          <div class="col-md-10 offset-md-1">
+            <p class="text-muted">{% now 'jS F Y' %}</p>
+             <form action="" class="main_form" method="POST">
+               {% if messages %}
+                  {% for message in messages %}
+                  <p {% if message.tags %} class=" alert alert-{{message.tags}}"{% endif %}>{{ message}}</p>{% endfor %}
+                  {% endif %}
+               {% csrf_token %}
+                <div class="row">
+                   <div class="col-md-12 ">
+                      <input class="contactus" placeholder="Name" type="type" name="Name"> 
+                   </div>
+                   <div class="col-md-12">
+                      <input class="contactus" placeholder="Phone number1" type="type" name="Phone1">                          
+                   </div>
+                    <div class="col-md-12">
+                        <input class="contactus" placeholder="Phone number2" type="type" name="Phone2">                          
+                    </div>
+                   <div class="col-md-12">
+                      <input class="contactus" placeholder="Email" type="type" name="Email">                          
+                   </div>
+                    <div class="col-md-12">
+                        <input class="contactus" placeholder="Picture" type="type" name="images">                          
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" placeholder="Address" type="type" name="address">                          
+                    </div>
+                    <div class="col-md-12">
+                        <input class="contactus" placeholder="Business Key" type="type" name="issue">                          
+                    </div>
+                   <div class="col-md-12">
+                      <textarea class="textarea" placeholder="Message" name="message"></textarea>
+                   </div>
+
+                   <div class="col-md-12">
+                  <button class="form-control" type="submit">Submit</button>
+                   </div>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+ </div>
+ contact -->
+{% endblock content %}

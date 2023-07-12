@@ -1,0 +1,70 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div class="container pt-5 mb-3">
+   <div class="row mt-5 justify-content-center">
+      <div class="col-md-10 offset-md-1">
+         <h1 class="text-center">Update Contact</h1>
+         <p class="text-muted">{% now 'jS F Y' %}</p>
+          <form action="{% url 'editcont' get_cont.id  %}" class="main_form" method="POST" novalidate="novalidate">
+           {% if messages %}
+              {% for message in messages %}
+              <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{ message }} </p> {% endfor %}
+              {% endif %}
+     
+            {% csrf_token %}
+            <div class="row form-group">
+              <div class="col-md-12 ">
+                 <input class="form-control" placeholder="Name" type="type" name="Name" value="{{get_cont.name}}"> 
+              </div>
+             </div>
+             
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Phone number1" type="type" name="Phone1" value="{{get_cont.phone1}}">                          
+                </div>
+             </div>
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Phone number2" type="type" name="Phone2" value="{{get_cont.phone2}}">                          
+               </div>
+             </div>
+               
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Email" type="type" name="Email" value="{{get_cont.email}}">                          
+                </div>
+             </div>
+     
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Picture" type="type" name="images" value="{{get_cont.picture}}">                       
+               </div>
+             </div>
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Address" type="type" name="address" value="{{get_cont.address}}">                          
+               </div>
+             </div>
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <input class="form-control" placeholder="Business Key" type="type" name="issue" value="{{get_cont.business_key}}">                          
+               </div>
+             </div>
+             <div class="row form-group">
+                <div class="col-md-12">
+                   <textarea class="form-control" placeholder="Message" name="message" value="{{get_cont.textfield}}"></textarea>
+                </div>
+             </div> 
+     
+                <div class="col-md-12">
+               <button class="btn btn-primary btn-sm btn-block" type="submit">Update</button>
+                </div>
+             </div>
+          </form>
+       </div>
+   </div>
+</div>
+
+
+{% endblock content %}
