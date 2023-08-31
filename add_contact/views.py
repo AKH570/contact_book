@@ -1,12 +1,15 @@
 from django.contrib import messages
 #from pyexpat.errors import messages
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse
+from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from add_contact.models import AddContact
 from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request,'home.html')
 
+@login_required
 def newcontact(request):
     #contact=AddContact.objects.all()
     if request.method=='POST':
@@ -24,14 +27,20 @@ def newcontact(request):
         messages.success(request,'Contact added  successfully')
     return render(request,'addcontact.html')
     
-
+#@login_required
 def ContactList(request):
-    allcont= AddContact.objects.all()
-    paginator = Paginator(allcont,3) 
-    page_num = request.GET.get('page')
-    paged_cont = paginator.get_page(page_num)
-    return render(request,'allcontact.html',{'allcont':paged_cont})
+    if request.user.is_authenticated:
+        allcont= AddContact.objects.all()
+        paginator = Paginator(allcont,3) #pagination
+        page_num = request.GET.get('page')
+        paged_cont = paginator.get_page(page_num)
+        return render(request,'allcontact.html',{'allcont':paged_cont})
+        
+    else:
+        return HttpResponseRedirect(reverse('newcont'))
+        
 
+#@login_required
 def EditContuct(request,pk):
     get_cont= get_object_or_404(AddContact,pk=pk)
     if request.method=='POST':
@@ -56,14 +65,61 @@ def EditContuct(request,pk):
         get_cont.save()
         messages.success(request,'Contact updated successfully') #message is not working
         return render(request,'edit_contuct.html',{'get_cont':get_cont})
-        #return redirect('allcont',{'messages':messages})
+        #return redirect('editcont')
         
     else:
-        
-        return render(request,'edit_contuct.html',{'get_cont':get_cont})
+        get_cont= get_object_or_404(AddContact,pk=pk)
+    return render(request,'edit_contuct.html',{'get_cont':get_cont})
     
 def DeleteContuct(request,pk):
     get_cont= get_object_or_404(AddContact,pk=pk)
     get_cont.delete()
-
     return redirect('allcont')
+
+def QuickMath(request):
+        result=''
+        try:
+            if request.method=='GET':
+                return render (request,'qmath.html')
+            if request.method == 'POST':
+                v1 = eval(request.POST.get('val1',0))
+                v2 = eval(request.POST.get('val2',0))
+                operator = request.POST.get('operator')
+
+                if operator =='+':
+                    result = v1 + v2
+                elif operator =='-':
+                    result= v1 - v2
+                elif operator == '*':
+                    result= v1*v2
+                elif operator == 'm':
+                    result =v1%v2
+                elif operator == '%':
+                    result = v1*(v2/100)
+                elif operator == '/' and v2 is not 0:
+                    result= v1/v2
+                elif operator == '/' and v2 == 0:
+                    messages.error(request,'Not a valid Number')
+                    
+            return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
+            #return HttpResponseRedirect(reverse('qmath'))        
+        except:
+            messages.error(request,'Invalid operations')
+            return HttpResponseRedirect(reverse('qmath'))
+        
+def Result(request):
+    return HttpResponseRedirect(reverse('qmath'))
+
+            
+
+
+# def Addfun(request):
+#         #value=None
+#         if request.method == 'POST':
+#             value1 = int(request.POST.get('val1'))
+#             value2 = int(request.POST.get('val2'))
+#             value = value1 + value2
+#         return render(request,'result.html',{'val':value})
+
+def Calculator(request):
+     return render(request,'calculator.html')

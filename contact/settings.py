@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fontawesomefree',
     'add_contact',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'contact.wsgi.application'
-
+AUTH_USER_MODEL = 'accounts.Account'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -126,3 +127,16 @@ STATICFILES_DIRS = [BASE_DIR/'static',]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+    
+}
+
+#smtp configurations for user activations
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'khandokar.13@gmail.com'
+EMAIL_HOST_PASSWORD = 'kbuqigkgmabdbifa'
+EMAIL_USE_TLS = True

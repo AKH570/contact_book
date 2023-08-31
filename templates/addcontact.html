@@ -3,20 +3,23 @@
 {% block content %}
 
 <section class="site-section" id="work-section">
+   
    <div class="container">
      <div class="row mt-5 justify-content-center">
        <div class="col-md-8 text-center">
          <div class="col-md-12">
             <div class="titlepage text_align_center">
+               {% include 'common/alert.html' %}
                <h2>Add <span class="blue_light">New</span></h2>
             </div>
          </div> <hr>
          <p class="text-muted">{% now 'jS F Y' %}</p>
          <form action="" class="main_form" method="POST">
+            <!--
             {% if messages %}
                {% for message in messages %}
                <p {% if message.tags %} class=" alert alert-{{message.tags}}"{% endif %}>{{ message}}</p>{% endfor %}
-               {% endif %}
+               {% endif %} -->
             {% csrf_token %}
              <div class="row form-group">
                 <div class="col-md-12 ">

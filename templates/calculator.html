@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="{% static 'css/calc.css' %}">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+   </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+   <!--base-->
+   <div class="site-wrap">
+
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+     
+      <div class="border-bottom top-bar py-2 bg-dark" id="home-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-0">
+                <span class="mr-3"><strong class="text-white">Phone:</strong> <a href="tel://#">+1 234 5678 9101</a></span>
+                <span><strong class="text-white">Email:</strong> <a href="#">khandokarmtn570@gmail.com</a></span>
+              </p>
+            </div>
+            {% if user.id is None %}
+            <div class="col-md-6">
+              <div class="widget-header">
+                <ul class="social-media">
+                  <li><a href="{% url 'registration' %}" class="badge badge-info p-2">Registration</a></li>
+                  <li><a href="{% url 'login' %}" class="badge badge-info p-2">Login</a></li>
+                </ul>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-md-6">
+              <div class="widget-header">
+                <ul class="social-media">
+                  <small class="title text-success">Welcome {{user.first_name}} ! </small>
+                  <li><a href="#" class="badge badge-info p-1  ml-2">Dashboard</a></li>
+                  <li><a href="{% url 'logout' %}" class="badge badge-info p-1">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div> 
+      </div>
+  
+      <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
+  
+        <div class="container">
+          <div class="row align-items-center">
+              <div class=" col-md-2 col-sm-3 col logo_section">
+                <div class="full">
+                   <div class="center-desk">
+                      <div class="logo">
+                         <a href="{% url 'home' %}"><img src="{% static 'images/abir1.png' %}" alt="#" /></a>
+                      </div>
+                   </div>
+                </div>
+             </div>
+            
+            <div class="col-12 col-md-10 d-none d-xl-block">
+              <nav class="site-navigation position-relative text-right" role="navigation">
+  
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                  <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                  <li><a href="{% url 'newcont' %}" class="nav-link">Add Contact</a></li>
+                  <li>
+                    <a href="{% url 'allcont' %}" class="nav-link">ALL</a>
+                  </li>
+                  <li class="has-children">
+                    <a href="#about-section" class="nav-link">Tools</a>
+                    <ul class="dropdown">
+                      <li><a href="{% url 'qmath' %}">Qmath</a></li>
+                      <li><a href="{% url 'calculator' %}">Calculator</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#blog-section" class="nav-link">Blog</a></li>
+                  <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+  
+  
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+  
+          </div>
+        </div>
+        <!--endbase-->
+   <section id="first">
+      <div class="container-fluid mt-3">
+        <div class="col-sm header">
+          <h1>Calculator</h1>
+        </div>
+      </div>
+    </section>
+    <section id="second">
+      <form class="" action="calculation" method="post">
+        {% csrf_token %}
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-2 left">
+            <!-- left -->
+          </div>
+          <div class="col-sm-8 middle">
+            <!-- main -->
+            <div class="result">
+              <span id="ques">{{values}}</span>
+              <input type="text" name="values" id= "result" placeholder="0" value={{result}} >
+            </div>
+            <div class="keypad">
+              <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" id="left_small" onclick="insertTextInInputValue('(');">(</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue(')');">)</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('%');">%</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('AC');">AC</button>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(7);">7</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(8);">8</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(9);">9</button>
+                </div>
+                <div class="col-sm-2">
+                   <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('&divide');">&#247;</button>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(4);">4</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(5);">5</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(6);">6</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('x');">&#215;</button>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(1);">1</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(2);">2</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(3);">3</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('-');">-</button>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block num_btn" onclick="insertTextInInputValue(0);">0</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('.');">.</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" class="btn btn-block btn-primary equal_btn">=</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-block spc_btn" onclick="insertTextInInputValue('+');">+</button>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 right">
+            <!-- right -->
+          </div>
+        </div>
+      </div>
+      </form>
+    </section>
+
+  </body>
+  <script type="text/javascript">
+  // var theTotal = 0;
+  // $('#1').click(function(){
+  // $('#result').val(1);
+  // });
+  function insertTextInInputValue(buttonValueIs){
+            if (buttonValueIs == "AC")
+            {
+              $('#ques').text('Ans : 0');
+              $('#result').val(0);
+            }
+            else {
+              var inputElementIs = document.getElementById("result");
+              inputElementIs.value =  inputElementIs.value + buttonValueIs;
+              $('#result').val(inputElementIs.value);
+            }
+        }
+
+// $('#tussenstand').val("Total: "+theTotal);
+  </script>
+</html>

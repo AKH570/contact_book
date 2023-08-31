@@ -5,17 +5,14 @@
    <div class="row mt-5 justify-content-center">
       <div class="col-md-10 offset-md-1">
          <h1 class="text-center">Update Contact</h1>
+         {% include 'common/alert.html' %}
          <p class="text-muted">{% now 'jS F Y' %}</p>
           <form action="{% url 'editcont' get_cont.id  %}" class="main_form" method="POST" novalidate="novalidate">
-           {% if messages %}
-              {% for message in messages %}
-              <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{ message }} </p> {% endfor %}
-              {% endif %}
-     
             {% csrf_token %}
             <div class="row form-group">
               <div class="col-md-12 ">
-                 <input class="form-control" placeholder="Name" type="type" name="Name" value="{{get_cont.name}}"> 
+                 <input class="form-control" placeholder="Name" type="type" name="Name" value="{{get_cont.name}}">
+                 
               </div>
              </div>
              

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Create &mdash; Onepage Website Template by Colorlib</title>
+    <title>Contact &mdash; MIS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
     
     
   </head>
@@ -47,17 +48,29 @@
           <div class="col-md-6">
             <p class="mb-0">
               <span class="mr-3"><strong class="text-white">Phone:</strong> <a href="tel://#">+1 234 5678 9101</a></span>
-              <span><strong class="text-white">Email:</strong> <a href="#">info@yourdomain.com</a></span>
+              <span><strong class="text-white">Email:</strong> <a href="#">{{ user.email }}</a></span>
             </p>
           </div>
+          {% if user.id is None %}
           <div class="col-md-6">
-            <ul class="social-media">
-              <li><a href="#" class="p-2"><span class="icon-facebook"></span></a></li>
-              <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
-              <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
-              <li><a href="#" class="p-2"><span class="icon-linkedin"></span></a></li>
-            </ul>
+            <div class="widget-header">
+              <ul class="social-media">
+                <li><a href="{% url 'registration' %}" class="badge badge-info p-2">Registration</a></li>
+                <li><a href="{% url 'login' %}" class="badge badge-info p-2">Login</a></li>
+              </ul>
+            </div>
           </div>
+          {% else %}
+          <div class="col-md-6">
+            <div class="widget-header">
+              <ul class="social-media">
+                <small class="title text-success">Welcome {{user.first_name}} ! </small>
+                <li><a href="#" class="badge badge-info p-1  ml-2">Dashboard</a></li>
+                <li><a href="{% url 'logout' %}" class="badge badge-info p-1">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+          {% endif %}
         </div>
       </div> 
     </div>
@@ -70,7 +83,7 @@
               <div class="full">
                  <div class="center-desk">
                     <div class="logo">
-                       <a href="{% url 'home' %}"><img src="{% static 'images/vhai.png' %}" alt="#" /></a>
+                       <a href="{% url 'home' %}"><img src="{% static 'images/abir1.png' %}" alt="#" /></a>
                     </div>
                  </div>
               </div>
@@ -86,10 +99,10 @@
                   <a href="{% url 'allcont' %}" class="nav-link">ALL</a>
                 </li>
                 <li class="has-children">
-                  <a href="#about-section" class="nav-link">About</a>
+                  <a href="#about-section" class="nav-link">Tools</a>
                   <ul class="dropdown">
-                    <li><a href="#about-section">Specialties</a></li>
-                    <li><a href="#team-section">Our Team</a></li>
+                    <li><a href="{% url 'qmath' %}">Qmath</a></li>
+                    <li><a href="{% url 'calculator' %}">Calculator</a></li>
                   </ul>
                 </li>
                 <li><a href="#blog-section" class="nav-link">Blog</a></li>
@@ -106,64 +119,11 @@
       
     </header>
     {% block content %}
+  
 
     {% endblock content %}
 
      <!-- end header inner -->
-    <!--  footer -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5">
-            <div class="row">
-              <div class="col-md-5">
-                <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
-              </div>
-              <div class="col-md-3 ml-auto">
-                <h2 class="footer-heading mb-4">Features</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-3">
-                <h2 class="footer-heading mb-4">Follow Us</h2>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-            <form action="#" method="post">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
     <script src="{% static 'js/jquery-ui.js' %}"></script>
@@ -192,5 +152,5 @@
               </script>
   
     <script src="{% static 'js/main.js' %}"></script>
-</body>
+  </body>
 </html>
