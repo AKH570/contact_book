@@ -165,16 +165,7 @@ def QuickMath(request):
         else:
             #if request.method=='GET':
             return render (request,'qmath.html')   
-'''               
-        except:
-            messages.error(request,'Invalid operations')
-            return HttpResponseRedirect(reverse('qmath'))
-
-
-def squareRoot(request):
-    #return render(request,'qmath.html')
-    return HttpResponse('Here the text of the web page.')
-'''        
+                   
 def Result(request):
     return HttpResponseRedirect(reverse('qmath'))
 
