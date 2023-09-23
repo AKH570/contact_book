@@ -9,6 +9,6 @@ urlpatterns = [
     path('deletecont/<int:pk>/',views.DeleteContuct,name='deletecont'),
     path('qmath/',views.QuickMath,name='qmath'),
     path('result/',views.Result,name='result'),
-    path('calculator/',views.Calculator,name='calculator'),
+   # path('sqroot/',views.squareRoot,name='sqroot')
     
 ]

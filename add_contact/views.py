@@ -6,6 +6,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from add_contact.models import AddContact
 from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from math import sqrt
+
+
 def home(request):
     return render(request,'home.html')
 
@@ -78,35 +81,100 @@ def DeleteContuct(request,pk):
 
 def QuickMath(request):
         result=''
-        try:
-            if request.method=='GET':
-                return render (request,'qmath.html')
-            if request.method == 'POST':
+        if request.method == 'POST':
+            if 'result' in request.POST:
                 v1 = eval(request.POST.get('val1',0))
                 v2 = eval(request.POST.get('val2',0))
                 operator = request.POST.get('operator')
 
                 if operator =='+':
                     result = v1 + v2
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
                 elif operator =='-':
                     result= v1 - v2
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
                 elif operator == '*':
                     result= v1*v2
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
                 elif operator == 'm':
                     result =v1%v2
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
                 elif operator == '%':
                     result = v1*(v2/100)
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
                 elif operator == '/' and v2 is not 0:
                     result= v1/v2
-                elif operator == '/' and v2 == 0:
-                    messages.error(request,'Not a valid Number')
-                    
-            return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-            #return HttpResponseRedirect(reverse('qmath'))        
+                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
+            #Square Root
+            elif 'sqroot' in request.POST:
+                try:
+                    value1=eval(request.POST.get('val1',0))
+                    if value1 >= 0 :
+                        result= sqrt(value1)
+                        return render(request,'qmath.html',{'result':result,
+                        'v1': value1
+                    })
+                    else:
+                        messages.error(request,'Give me real number')
+                        return render (request,'qmath.html')
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+             #Power
+            elif 'power2' in request.POST:
+                try:
+                    value1=eval(request.POST.get('val1',0))
+                    if value1 >= 0 :
+                        result= pow(value1,2)
+                        return render(request,'qmath.html',{'result':result,
+                        'v1': value1
+                    })
+                    else:
+                        messages.error(request,'Give me real number')
+                        return render (request,'qmath.html')
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+            #power3
+            elif 'power3' in request.POST:
+                try:
+                    value1=eval(request.POST.get('val1',0))
+                    if value1 >= 0 :
+                        result= pow(value1,3)
+                        return render(request,'qmath.html',{'result':result,
+                        'v1': value1
+                    })
+                    else:
+                        messages.error(request,'Give me real number')
+                        return render (request,'qmath.html')
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+            #mod
+            elif 'mod' in request.POST:
+                try:
+                    value1= eval(request.POST.get('val1',0))
+                    value2= eval(request.POST.get('val2',0))
+                    result = value1%value2
+                    return render(request,'qmath.html',{'result':result
+                    })
+                except:
+                    return HttpResponse('asdSA')
+                    #messages.error(request,'You did not give any input.')
+                    #return render (request,'qmath.html')
+        else:
+            #if request.method=='GET':
+            return render (request,'qmath.html')   
+'''               
         except:
             messages.error(request,'Invalid operations')
             return HttpResponseRedirect(reverse('qmath'))
-        
+
+
+def squareRoot(request):
+    #return render(request,'qmath.html')
+    return HttpResponse('Here the text of the web page.')
+'''        
 def Result(request):
     return HttpResponseRedirect(reverse('qmath'))
 
@@ -121,5 +189,5 @@ def Result(request):
 #             value = value1 + value2
 #         return render(request,'result.html',{'val':value})
 
-def Calculator(request):
-     return render(request,'calculator.html')
+#def Calculator(request):
+#     return render(request,'calculator.html')

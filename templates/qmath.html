@@ -35,8 +35,9 @@
                 <div class="row px-5 my-3"><h3 style="color:blue;">QMath:</h3><hr></div>
 				<div class="row gy-2 gx-3 align-items-center">{% include 'common/alert.html' %}</div>
 					<div class="booking-form">
-						<form method="POST" class="row g-3" action="{% url 'qmath' %}">
+						<form method="POST" action=" {% url 'qmath' %}">
                             {% csrf_token %}
+							<div class="row gx-3">
 								<div class="col-md-auto">
 									<div class="form-group">	
 										<input type="text" class="form-control my-3" placeholder="1st Input" name="val1">
@@ -60,16 +61,38 @@
 										<input type="text" class="form-control my-3"  placeholder="2nd Input" name="val2">
 									</div>
 								</div>
-								<div class="col-md-6 py-5">
-									<div class="bg-info"><h3 style="font-size:24px;color: rgb(234, 234, 237);">{{v1}}{{operator}} {{v2}} = {{result}}</h3>
+							</div>
+								<div class="row-symbol">
+									<div>
+										<button type="submit" name="sqroot" class="power-ele">√</button>
 									</div>
-								</div>
-							
-								<div class="col-12">
-									<div class="form-btn">
-										<button class="btn btn-primary me-md-5">OK </button>
+									<div>
+										<button type="submit" name="power2" class="power-ele">x²</button>
 									</div>
+									
+									<div>
+										<button type="submit" name="power3" class="power-ele">x3</button>
+									</div>
+
+									<div>
+										<button type="submit" name="mod" value="%" class="power-ele">mod</button>
+									</div>
+
 								</div>
+							<div class="result-btn">
+								<div class="row-btn">
+									<button type="submit" class="btn-equ" name="result">= </button>
+								</div>
+								<div class="result-field">
+									{% if operator %}
+									<h3>{{v1}}{{operator}} {{v2}} = {{result}}</h3>
+									{% elif v1 %}
+									<h3>{{v1}} = {{result}}</h3>
+									{% elif v2 %}
+									<h3>{{v2}} = {{result}}</h3>
+									{% endif %}	
+								</div>
+							</div>
 						</form>
 					</div>
 			</div>

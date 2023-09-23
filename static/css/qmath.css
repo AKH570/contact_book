@@ -101,3 +101,48 @@
 .booking-form .submit-btn:focus {
 	opacity: 0.9;
 }
+
+.row-symbol{
+	display: flex;
+	flex-direction: row;
+	margin-top: 30px;
+}
+.power-ele{
+	margin-right: 15px;
+	width: 75px;
+	height: 50px;
+	color: #f23e3e;
+	font-size: 24px;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
+
+/* resuld and equal entity */
+.result-btn{
+	display: flex;
+	flex-direction: row;
+	margin-top: 25px;
+}
+.result-field{
+	background-color:whitesmoke;
+	width:500px;
+	height: 50px;
+	margin: 23px;
+	padding-top: 5px;
+	text-align:center;
+	font-style: oblique;
+}
+.btn-equ{
+	background-color:bisque;
+	width: 200px;
+	height: 55px;
+	font-size: 24px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.row-btn{
+	display: flex;
+	margin-top: 20px;
+	
+} 
+/* end result and equal entity */
