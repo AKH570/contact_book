@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'add_contact',
     'accounts',
+    'calculator',
 ]
 
 MIDDLEWARE = [

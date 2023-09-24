@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('add_contact.urls' )),
     path('accounts/',include('accounts.urls' )),
+    path('calculator/',include('calculator.urls'))
 ]

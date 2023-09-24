@@ -102,6 +102,18 @@
 	opacity: 0.9;
 }
 
+.input-value{
+	display: flex;
+	flex-direction: row;
+	width: 250px;
+	height: 40px;
+	background-color:cornsilk;
+	border-color:black;
+	text-align: center;
+	color:black;
+	font-size: 22px;
+	
+}
 .row-symbol{
 	display: flex;
 	flex-direction: row;
