@@ -112,6 +112,7 @@
 	text-align: center;
 	color:black;
 	font-size: 22px;
+	margin-right: 20px;
 	
 }
 .row-symbol{
@@ -119,7 +120,20 @@
 	flex-direction: row;
 	margin-top: 30px;
 }
+.gen-btn{
+	display: flex;
+	flex-direction: row;
+	padding-left: 40px;
+}
 .power-ele{
+	margin-right: 15px;
+	width: 75px;
+	height: 50px;
+	color: #f23e3e;
+	font-size: 24px;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
+.gen-opr{
 	margin-right: 15px;
 	width: 75px;
 	height: 50px;
