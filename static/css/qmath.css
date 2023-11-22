@@ -102,6 +102,14 @@
 	opacity: 0.9;
 }
 
+.item-val{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 50px;
+	justify-content: center;
+	
+}
 .input-value{
 	display: flex;
 	flex-direction: row;
@@ -113,12 +121,18 @@
 	color:black;
 	font-size: 22px;
 	margin-right: 20px;
-	
 }
-.row-symbol{
+.row-symbol-one{
 	display: flex;
 	flex-direction: row;
 	margin-top: 30px;
+	justify-content: center;
+}
+.row-symbol-two{
+	display: flex;
+	flex-direction: row;
+	margin-top: 30px;
+	justify-content: center;
 }
 .gen-btn{
 	display: flex;
@@ -147,6 +161,7 @@
 	display: flex;
 	flex-direction: row;
 	margin-top: 25px;
+	justify-content: center;
 }
 .result-field{
 	background-color:whitesmoke;

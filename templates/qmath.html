@@ -32,107 +32,92 @@
 	<div class="section">
 		<div class="section-center">
 			<div class="container">
-                <div class="row px-5 my-3"><h3 style="color:blue;">QMath:</h3><hr></div>
-				<div class="row gy-2 gx-3 align-items-center">{% include 'common/alert.html' %}</div>
+                		<div class="row px-5 my-3">
+							<h3 style="color:blue;">QMath:</h3><hr>
+						</div>
 					<div class="booking-form">
 						<form method="POST" action=" {% url 'calculator' %}">
                             {% csrf_token %}
-							<div class="row">
-								<div class="col-md-auto">
-									<div class="form-group">	
-										<input type="text" class="input-value my-3" placeholder="1st Input" name="val1">
+								<div class="item-val">
+									<div>	
+										<input type="text" class="input-value" placeholder="1st Input" name="val1">
+									</div>
+									<div>
+										<input type="text" class="input-value"  placeholder="2nd Input" name="val2">
 									</div>
 								</div>
-                                <!-- <div class="col-md-auto">
-									<div class="form-group">
-										<select class="my-3" name="operator">
-											<option value="">operation</option>
-											<option value="+">+ (add)</option>
-											<option value="-">- (subtract)</option>
-											<option value="*">x (multiply)</option>
-                                            <option value="/">/ (division)</option>
-											<option value="m">m (mod)</option>
-											<option value="%">% (percentage)</option>
-										</select>
-									</div>
-								</div> -->
-								<div class="col-md-auto">
-									<div class="form-group">
-										<input type="text" class="input-value my-3"  placeholder="2nd Input" name="val2">
-									</div>
-								</div>
-							</div>
-								<div class="row-symbol">
+							<div class="row-symbol-one">
+								<div class="gen-btn">
 									<div>
 										<button type="submit" name="sqroot" value="√" class="power-ele">√</button>
 									</div>
 									<div>
 										<button type="submit" name="power2" class="power-ele">x²</button>
 									</div>
+								</div>
+								<div class="gen-btn">
+									<div>
+										<button type="submit" name="division" value="/" class="power-ele">÷</button>
+									</div>
+									<div>
+										<button type="submit" name="multiply" value="X" class="power-ele">x</button>
+									</div>
+								</div>
+								<div class="gen-btn">
+									<div>
+										<button type="submit" name="parcentage" value="/" class="power-ele">%</button>
+									</div>
+									<div>
+										<button type="submit" name="pi" value="π" class="power-ele">π</button>
+									</div>
+								</div>
+								
+							</div>
+							<div class="row-symbol-two">
+								<div class="gen-btn">
+									<div>
+										<button type="submit" name="power3" class="power-ele">x3</button>
+									</div>
+
+									<div>
+										<button type="submit" name="mod" class="power-ele">mod</button>
+									</div>
+								</div>
 									
 									<div class="gen-btn">
 										<div>
-											<button type="submit" name="division" value="/" class="power-ele">÷</button>
+											<button type="submit" name="sum" value="+" class="gen-opr">+</button>
 										</div>
 										<div>
-											<button type="submit" name="multipli" class="power-ele">x</button>
+											<button type="submit" name="minus" value="-" class="gen-opr">-</button>
 										</div>
 									</div>
 									<div class="gen-btn">
 										<div>
-											<button type="submit" name="division" value="/" class="power-ele">%</button>
+											<button type="submit" name="factor" class="gen-opr">n!</button>
 										</div>
 										<div>
-											<button type="submit" name="pi" class="power-ele">π</button>
+											<button type="submit" name="clear" class="gen-opr">C</button>
 										</div>
 									</div>
-									
-								</div>
-								<div class="row-symbol">
-										<div>
-											<button type="submit" name="power3" class="power-ele">x3</button>
-										</div>
-	
-										<div>
-											<button type="submit" name="mod" class="power-ele">mod</button>
-										</div>
-										<div class="gen-btn">
-											<div>
-												<button type="submit" name="sum" class="gen-opr">+</button>
-											</div>
-											<div>
-												<button type="submit" name="minus" class="gen-opr">-</button>
-											</div>
-											<div class="gen-btn">
-												<div>
-													<button type="submit" name="factor" class="gen-opr">n!</button>
-												</div>
-												<div>
-													<button type="submit" name="clear" class="gen-opr">C</button>
-												</div>
-										</div>
-												
-								</div>
+											
+							</div>
 							<div class="result-btn">
-								<div class="row-btn">
-									<button type="submit" class="btn-equ" name="result">=</button>
-								</div>
 								<div class="result-field">
-									{% if operator %}
-									<h3>{{v1}}{{operator}} {{v2}} {{equ}} {{result}}</h3>
+									{% if s1 %}
+									<h3>{{s1}}{{add}}{{s2}}{{equ}}{{result}}</h3>
 									{% elif v1 %}
-									<h3>{{ops}}{{v1}}{{equ}} {{result}}</h3>
+									<h3>{{ops}}{{v1}}{{equ}}{{result}}</h3>
 									{% else %}
 									<h3>{{m1}} {{mod}} {{m2}} {{equ}} {{result}}</h3>
 									{% endif %}	
 								</div>
 							</div>
 						</form>
-					</div>
+						{% include 'common/alert.html' %}
+					</div>	
 			</div>
 		</div>
 	</div>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
+</body>
 </html>

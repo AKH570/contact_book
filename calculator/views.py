@@ -1,37 +1,61 @@
 from django.shortcuts import render
-from math import sqrt
+from math import sqrt,remainder,factorial,pi
 from django.contrib import messages
 
 
 def Calculator(request):
         result=''
-        if request.method == 'POST':
-            operator = request.POST.get('operator')
-            if 'result' in request.POST:
-                v1 = eval(request.POST.get('val1',0))
-                v2 = eval(request.POST.get('val2',0))
-                #operator = request.POST.get('operator')
+        if request.method == 'POST': 
+            if 'sum' in request.POST:
+                try:
+                    s1 = eval(request.POST.get('val1',0))
+                    s2 = eval(request.POST.get('val2',0))
+                    add = request.POST.get('sum')
+                    list_val = [s1,s2]
+                    result = sum(list_val)
+                    return render(request,'qmath.html',
+                        {'result':result,'s1':s1, 'add':add,'s2':s2,'equ':'=' })
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+            
+            if 'minus' in request.POST:
+                try:
+                    s1 = eval(request.POST.get('val1',0))
+                    s2 = eval(request.POST.get('val2',0))
+                    add = request.POST.get('minus')
+                    result = s1-s2
+                    return render(request,'qmath.html',
+                        {'result':result,'s1':s1, 'add':add,'s2':s2,'equ':'=' })
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+            
+            if 'multiply' in request.POST:
+                try:
+                    s1 = eval(request.POST.get('val1',0))
+                    s2 = eval(request.POST.get('val2',0))
+                    add = request.POST.get('multiply')
+                    result = s1*s2
+                    return render(request,'qmath.html',
+                        {'result':result,'s1':s1, 'add':add,'s2':s2,'equ':'=' })
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
 
-                if operator =='+':
-                    result = v1 + v2
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-                elif operator =='-':
-                    result= v1 - v2
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-                elif operator == '*':
-                    result= v1*v2
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-                elif operator == 'm':
-                    result =v1%v2
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-                elif operator == '%':
-                    result = v1*(v2/100)
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
-                elif operator == '/' and v2 != 0:
-                    result= v1/v2
-                    return render(request,'qmath.html',{'result':result,'v1':v1,'v2':v2,'operator':operator})
+            if 'division' in request.POST:
+                try:
+                    s1 = eval(request.POST.get('val1',0))
+                    s2 = eval(request.POST.get('val2',0))
+                    add = request.POST.get('division')
+                    result = s1/s2
+                    return render(request,'qmath.html',
+                        {'result':result,'s1':s1, 'add':add,'s2':s2,'equ':'=' })
+                except:
+                    messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
             #Square Root
-            elif 'sqroot' in request.POST:
+            if 'sqroot' in request.POST:
                 try:
                     value1=eval(request.POST.get('val1',0))
                     ops= request.POST.get('sqroot')
@@ -47,7 +71,7 @@ def Calculator(request):
                     messages.error(request,'You did not give any input.')
                     return render (request,'qmath.html')
              #Power2
-            elif 'power2' in request.POST:
+            if 'power2' in request.POST:
                 try:
                     value1=eval(request.POST.get('val1',0))
                     result= pow(value1,2)
@@ -55,11 +79,12 @@ def Calculator(request):
                         'v1': value1,'equ':'=',
                         'ops':'sqr of '
                     })
+                    
                 except:
                     messages.error(request,'You did not give any input.')
                     return render (request,'qmath.html')
             #power3
-            elif 'power3' in request.POST:
+            if 'power3' in request.POST:
                 try:
                     value1=eval(request.POST.get('val1',0))
                     result= pow(value1,3)
@@ -71,17 +96,41 @@ def Calculator(request):
                     messages.error(request,'You did not give any input.')
                     return render (request,'qmath.html')
             # modulus
-            elif 'mod' in request.POST:
+            if 'mod' in request.POST:
                 try:
                     value1= eval(request.POST.get('val1',0))
                     value2= eval(request.POST.get('val2',0))
                     #ops = request.POST.get('mod')
-                    result = value1%value2
+                    result = remainder(value1,value2)
                     return render(request,'qmath.html',{'result':result,
                     'm1':value1,'m2':value2,'mod':'mod','equ':'='
                     })
                 except:
                     messages.error(request,'You did not give any input.')
+                    return render (request,'qmath.html')
+
+            if 'factor' in request.POST:
+                try:
+                    value1=eval(request.POST.get('val1',0))
+                    result= factorial(value1)
+                    return render(request,'qmath.html',{'result':result,
+                        'v1': value1,'equ':'=',
+                        'ops':'Factorial of '
+                    })
+                except ValueError:
+                    messages.error(request,'Wrong input value')
+                    return render (request,'qmath.html')
+            
+            if 'pi' in request.POST:
+                try:
+                    #value1=eval(request.POST.get('pi',0))
+                    result= 3.141592
+                    return render(request,'qmath.html',{'result':result,
+                        'v1': value1,'equ':'=',
+                        'ops':'pi '
+                    })
+                except ValueError:
+                    messages.error(request,'Wrong input value')
                     return render (request,'qmath.html')
         else:
             return render (request,'qmath.html')  
